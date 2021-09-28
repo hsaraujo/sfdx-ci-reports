@@ -1,7 +1,5 @@
 import { flags, SfdxCommand } from '@salesforce/command';
-import { Messages, SfdxError } from '@salesforce/core';
-import { AnyJson } from '@salesforce/ts-types';
-import { IConfig } from '@oclif/config'; 
+import { Messages } from '@salesforce/core';
 import * as shell from 'shelljs'
 import * as xml2js from 'xml2js'
 import { DeployReport } from '../../models/deploy/deployReport';
@@ -26,7 +24,7 @@ export default class Report extends SfdxCommand {
         wait: flags.string({char: 'w', description: messages.getMessage('nameFlagDescription')}),
     };
 
-    public async run(): Promise<AnyJson> {
+    public async run(): Promise<any> {
 
         this.exec(`mkdir -p test-reports`, {});
         // this.ux.log(this.flags.targetusername)
