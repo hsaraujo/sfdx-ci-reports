@@ -56,7 +56,7 @@ export default class Report extends SfdxCommand {
         const xml = builder.buildObject({
             'testsuites': {
                 'testsuite':{
-                    $: {'name': 'force.apex', 'timestamp':deployReport.result.completedDate, 'tests': deployReport.result.numberTestsTotal, 'failures': deployReport.result.numberTestErrors},
+                    $: {'name': this.flags.id, 'timestamp':deployReport.result.completedDate, 'tests': deployReport.result.numberTestsTotal, 'failures': deployReport.result.numberTestErrors},
                     properties: {
                         property: [{
                             $: {'name': 'outcome', 'value': deployReport.result.status}
