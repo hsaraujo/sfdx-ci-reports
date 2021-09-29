@@ -74,8 +74,8 @@ export default class CoberturaReporter implements IReporter{
 
     private coverageAttributes(deployReport: DeployReport): any {
 
-        let totalLines = 0;
-        let totalLinesUncovered = 0;
+        let totalLines: number = 0;
+        let totalLinesUncovered: number = 0;
         deployReport.result.details.runTestResult.codeCoverage.forEach(classCoverage => {
             totalLines += classCoverage.numLocations
             totalLinesUncovered += classCoverage.numLocationsNotCovered;
@@ -99,8 +99,8 @@ export default class CoberturaReporter implements IReporter{
 
     private packageAttributes(deployReport: DeployReport): any {
 
-        let totalLines = 0;
-        let totalLinesUncovered = 0;
+        let totalLines: number = 0;
+        let totalLinesUncovered: number = 0;
         deployReport.result.details.runTestResult.codeCoverage.forEach(classCoverage => {
             totalLines += classCoverage.numLocations
             totalLinesUncovered += classCoverage.numLocationsNotCovered;
