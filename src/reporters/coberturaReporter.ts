@@ -47,7 +47,7 @@ export default class CoberturaReporter implements IReporter{
             const lineRate = (linesCovered / classCoverage.numLocations).toFixed(2)
 
             const clazz = {
-                $: {'name': classCoverage.name, 'filename': `force-app/main/default/classes/${classCoverage.name}.cls`, 'line-rate': lineRate, 'branch-rate': 1},
+                $: {'name': classCoverage.name, 'filename': `force-app/main/default/classes/${classCoverage.name}.cls`, 'line-rate': lineRate, 'branch-rate': 1, 'complexity': '0'},
                 'methods': {},
                 'lines': {
                     'line': this.lines(classCoverage)
@@ -121,6 +121,8 @@ export default class CoberturaReporter implements IReporter{
         return {
             'line-rate': lineRate,
             'branch-rate': 1,
+            'name': 'src',
+            'complexity': '0'
         };
     }
 
