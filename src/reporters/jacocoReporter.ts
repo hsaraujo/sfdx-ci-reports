@@ -8,8 +8,8 @@ export default class JacocoReporter implements IReporter{
     generate(deployReport: DeployReport): void {
         
         let sourceFiles = [];
-        let totalLinesCovered = 0;
-        let totalLinesUncovered = 0;
+        let totalLinesCovered: number = 0;
+        let totalLinesUncovered: number = 0;
 
         for(const i in deployReport.result.details.runTestResult.codeCoverage){
             const classCoverage = deployReport.result.details.runTestResult.codeCoverage[i];
@@ -24,15 +24,15 @@ export default class JacocoReporter implements IReporter{
             
             for(let line = 1; line <= classCoverage.numLocations; line++){
 
-                const covered = uncoveredLines.indexOf(line) == -1;
+                const covered = uncoveredLines.indexOf(line.toString()) == -1;
 
                 lines.push({
                     $: {'nr': line, 'mi': covered ? '0' : '1', 'ci' : covered ? '1' : '0', 'mb': '0', 'cb': '0'}
                 })
             }
 
-            totalLinesCovered += classCoverage.numLocations - classCoverage.numLocationsNotCovered;
-            totalLinesUncovered += classCoverage.numLocationsNotCovered;
+            totalLinesCovered += Number(classCoverage.numLocations - classCoverage.numLocationsNotCovered);
+            totalLinesUncovered += Number(classCoverage.numLocationsNotCovered);
 
             sourceFiles.push({
                 $: {'name' : classCoverage.name},
@@ -52,7 +52,10 @@ export default class JacocoReporter implements IReporter{
                 $ : {'name': deployReport.result.id},
                 'package':{
                     $: {'name': 'salesforce'},
-                    'sourcefile': sourceFiles
+                    'sourcefile': sourceFiles,
+                    'counter': [
+                        { $: {'type': 'line', 'missed': totalLinesUncovered, 'covered': totalLinesCovered}}
+                    ]
                 },
                 'counter': [
                     { $: {'type': 'line', 'missed': totalLinesUncovered, 'covered': totalLinesCovered}}

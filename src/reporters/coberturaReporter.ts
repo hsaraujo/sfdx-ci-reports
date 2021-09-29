@@ -20,7 +20,7 @@ export default class CoberturaReporter implements IReporter{
             'coverage': {
                 $ : this.coverageAttributes(deployReport),
                 'sources': {
-                    'source': 'test-reports/'
+                    'source': '/home/vsts/work/1/s/test-reports'
                 },
                 'packages': {
                     'package': {
