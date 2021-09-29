@@ -20,8 +20,7 @@ export default class Report extends SfdxCommand {
 
     protected static flagsConfig = {
         // flag with a value (-n, --name=VALUE)
-        id: flags.string({char: 'i', description: messages.getMessage('nameFlagDescription')}),
-        wait: flags.string({char: 'w', description: messages.getMessage('nameFlagDescription')}),
+        id: flags.string({char: 'i', description: messages.getMessage('nameFlagDescription')})
     };
 
     public async run(): Promise<any> {
