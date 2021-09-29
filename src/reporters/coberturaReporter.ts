@@ -33,7 +33,7 @@ export default class CoberturaReporter implements IReporter{
             }
         });
 
-        fs.writeFileSync(`test-reports/coverage.xml`, xml);
+        fs.writeFileSync(`test-reports/coverage-cobertura.xml`, xml);
         
     }
 
