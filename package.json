@@ -1,7 +1,7 @@
 {
   "name": "ci-reports",
   "description": "reports for ci",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "Heitor Araujo",
   "bugs": "https://github.com/hsaraujo/ci-reports/issues",
   "dependencies": {

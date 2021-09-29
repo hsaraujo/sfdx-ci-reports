@@ -56,10 +56,9 @@ export default class CoberturaReporter implements IReporter{
         let lines = [];
         let uncoveredLines = [];
 
-        classCoverage.locationsNotCovered.forEach(uncoveredLine => {
-
-            uncoveredLines.push(uncoveredLine.line);
-        });
+        for(const i in classCoverage.locationsNotCovered){
+            uncoveredLines.push(classCoverage.locationsNotCovered[i].line);
+        }
 
         for(let i = 1; i <= classCoverage.numLocations; i++){
 
