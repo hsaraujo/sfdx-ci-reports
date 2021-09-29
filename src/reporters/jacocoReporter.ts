@@ -60,7 +60,7 @@ export default class JacocoReporter implements IReporter{
             }
         });
 
-        fs.writeFileSync(`test-reports/${deployReport.result.id}-jacoco.xml`, xml);
+        fs.writeFileSync(`test-reports/coverage.xml`, xml);
         
     }
 
