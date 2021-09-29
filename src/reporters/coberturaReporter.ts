@@ -77,12 +77,12 @@ export default class CoberturaReporter implements IReporter{
         let totalLines: number = 0;
         let totalLinesUncovered: number = 0;
         deployReport.result.details.runTestResult.codeCoverage.forEach(classCoverage => {
-            totalLines += classCoverage.numLocations
-            totalLinesUncovered += classCoverage.numLocationsNotCovered;
+            totalLines += Number(classCoverage.numLocations)
+            totalLinesUncovered += Number(classCoverage.numLocationsNotCovered);
         });
 
-        const totalLinesCovered = totalLines - totalLinesUncovered;
-        const lineRate = (totalLinesCovered / totalLines).toFixed(2);
+        const totalLinesCovered: number = totalLines - totalLinesUncovered;
+        const lineRate: string = (totalLinesCovered / totalLines).toFixed(2);
 
         return {
             'lines-valid': totalLines,
