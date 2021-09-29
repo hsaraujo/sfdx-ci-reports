@@ -1,15 +1,20 @@
 import { DeployReport } from "../models/deploy/deployReport";
 import IReporter from "./ireporter";
 import * as xml2js from 'xml2js';
+import { BuilderOptions } from 'xml2js'
 import * as fs from 'fs';
 import CodeCoverage from "../models/deploy/codeCoverage";
 
 export default class CoberturaReporter implements IReporter{
 
     generate(deployReport: DeployReport): void {
+
+        const options: BuilderOptions = {
+            doctype: { 'sysID' : 'http://cobertura.sourceforge.net/xml/coverage-04.dtd'},
+            xmldec: {'version': '1.0', 'encoding': 'UTF-8'}
+        };
         
-        const builder = new xml2js.Builder({doctype: { 'ext': 'http://cobertura.sourceforge.net/xml/coverage-04.dtd'},
-        xmldec: {'version': '1.0', 'encoding': 'UTF-8'}});
+        const builder = new xml2js.Builder(options);
 
         const xml = builder.buildObject({
             'coverage': {
