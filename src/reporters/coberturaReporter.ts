@@ -20,7 +20,7 @@ export default class CoberturaReporter implements IReporter{
             'coverage': {
                 $ : this.coverageAttributes(deployReport),
                 'sources': {
-                    'source': 'force-app'
+                    'source': 'test-reports/'
                 },
                 'packages': {
                     'package': {
@@ -33,7 +33,7 @@ export default class CoberturaReporter implements IReporter{
             }
         });
 
-        fs.writeFileSync(`test-reports/${deployReport.result.id}-cobertura.xml`, xml);
+        fs.writeFileSync(`test-reports/coverage.xml`, xml);
         
     }
 
@@ -47,7 +47,7 @@ export default class CoberturaReporter implements IReporter{
             const lineRate = (linesCovered / classCoverage.numLocations).toFixed(2)
 
             const clazz = {
-                $: {'name': classCoverage.name, 'filename': `force-app/main/default/classes/${classCoverage.name}.cls`, 'line-rate': lineRate, 'branch-rate': 1, 'complexity': '0'},
+                $: {'name': classCoverage.name, 'filename': `force-app/main/default/classes/${classCoverage.name}.cls`, 'line-rate': lineRate, 'branch-rate': 0, 'complexity': '0'},
                 'methods': {},
                 'lines': {
                     'line': this.lines(classCoverage)
@@ -97,9 +97,9 @@ export default class CoberturaReporter implements IReporter{
             'lines-valid': totalLines,
             'lines-covered': totalLinesCovered,
             'line-rate': lineRate,
-            'branches-valid': 1,
-            'branches-covered': 1,
-            'branch-rate': 1,
+            'branches-valid': 0,
+            'branches-covered': 0,
+            'branch-rate': 0,
             'timestamp': '1500242087605',
             'complexity': '0',
             'version': '0.1'
@@ -120,7 +120,7 @@ export default class CoberturaReporter implements IReporter{
 
         return {
             'line-rate': lineRate,
-            'branch-rate': 1,
+            'branch-rate': 0,
             'name': 'src',
             'complexity': '0'
         };
