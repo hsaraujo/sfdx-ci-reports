@@ -20,7 +20,8 @@ export default class Coverage extends SfdxCommand {
 
     protected static flagsConfig = {
         // flag with a value (-n, --name=VALUE)
-        id: flags.string({char: 'i', description: messages.getMessage('nameFlagDescription')})
+        id: flags.string({char: 'i', required: true, description: messages.getMessage('nameFlagDescription')}),
+        result : flags.string({char: 'r', required: true, description: messages.getMessage('resultsFlagDescription')})
     };
 
     public async run(): Promise<any> {
@@ -31,8 +32,10 @@ export default class Coverage extends SfdxCommand {
 
         const deployReport: DeployReport = JSON.parse(deployReportJson)
 
-        new JacocoReporter().generate(deployReport);
-        new CoberturaReporter().generate(deployReport);
+        if(this.flags.result == 'cobertura')
+            new CoberturaReporter().generate(deployReport);
+        else if(this.flags.result == 'jacoco')
+            new JacocoReporter().generate(deployReport);
 
     }
 
