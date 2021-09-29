@@ -8,7 +8,8 @@ export default class CoberturaReporter implements IReporter{
 
     generate(deployReport: DeployReport): void {
         
-        const builder = new xml2js.Builder({doctype: ['http://cobertura.sourceforge.net/xml/coverage-04.dtd']});
+        const builder = new xml2js.Builder({doctype: { 'ext': 'http://cobertura.sourceforge.net/xml/coverage-04.dtd'},
+        xmldec: {'version': '1.0', 'encoding': 'UTF-8'}});
 
         const xml = builder.buildObject({
             'coverage': {
