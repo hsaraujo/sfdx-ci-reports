@@ -19,6 +19,9 @@ export default class CoberturaReporter implements IReporter{
         const xml = builder.buildObject({
             'coverage': {
                 $ : this.coverageAttributes(deployReport),
+                'sources': {
+                    'source': 'force-app'
+                },
                 'packages': {
                     'package': {
                         $ : this.packageAttributes(deployReport),
