@@ -34,6 +34,9 @@ export default class Coverage extends SfdxCommand {
         console.log(deployReport.status)
 
         let sourceFiles = [];
+        let totalLinesCovered = 0;
+        let totalLinesUncovered = 0;
+
         for(const i in deployReport.result.details.runTestResult.codeCoverage){
             const classCoverage = deployReport.result.details.runTestResult.codeCoverage[i];
 
@@ -54,6 +57,8 @@ export default class Coverage extends SfdxCommand {
                 })
             }
 
+            totalLinesCovered += classCoverage.numLocations - classCoverage.numLocationsNotCovered;
+            totalLinesUncovered += classCoverage.numLocationsNotCovered;
 
             sourceFiles.push({
                 $: {'name' : classCoverage.name},
@@ -70,10 +75,14 @@ export default class Coverage extends SfdxCommand {
 
         const xml = builder.buildObject({
             'report': {
+                $ : {'name': this.flags.id},
                 'package':{
                     $: {'name': 'salesforce'},
                     'sourcefile': sourceFiles
-                }
+                },
+                'counter': [
+                    { $: {'type': 'line', 'missed': totalLinesUncovered, 'covered': totalLinesCovered}}
+                ]
             }
         });
 
