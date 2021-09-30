@@ -22,7 +22,7 @@ $ npm install -g ci-reports
 $ sfdx COMMAND
 running command...
 $ sfdx (-v|--version|version)
-ci-reports/0.0.20 darwin-x64 node-v15.6.0
+ci-reports/0.0.21 darwin-x64 node-v15.6.0
 $ sfdx --help [COMMAND]
 USAGE
   $ sfdx COMMAND
@@ -58,7 +58,7 @@ OPTIONS
                                                                                     this command invocation
 ```
 
-_See code: [src/commands/sfci/coverage.ts](https://github.com/hsaraujo/ci-reports/blob/v0.0.20/src/commands/sfci/coverage.ts)_
+_See code: [src/commands/sfci/coverage.ts](https://github.com/hsaraujo/ci-reports/blob/v0.0.21/src/commands/sfci/coverage.ts)_
 
 ## `sfdx sfci:report [-i <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -82,7 +82,7 @@ OPTIONS
                                                                                     this command invocation
 ```
 
-_See code: [src/commands/sfci/report.ts](https://github.com/hsaraujo/ci-reports/blob/v0.0.20/src/commands/sfci/report.ts)_
+_See code: [src/commands/sfci/report.ts](https://github.com/hsaraujo/ci-reports/blob/v0.0.21/src/commands/sfci/report.ts)_
 <!-- commandsstop -->
 <!-- debugging-your-plugin -->
 # Debugging your plugin
