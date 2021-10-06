@@ -31,17 +31,21 @@ export default class Report extends SfdxCommand {
 
         const deployReport: DeployReport = JSON.parse(deployReportJson)
 
+        let executionTime: number = 0;
+
         let testCases = [];
         for(const i in deployReport.result.details.runTestResult.successes){
             const testExecution = deployReport.result.details.runTestResult.successes[i];
+            executionTime += Number(testExecution.time);
             testCases.push({
-                $: {'name': testExecution.methodName, 'classname': testExecution.name, 'time': testExecution.time, 'status' : 'SUCCESS'}
+                $: {'name': testExecution.methodName, 'classname': testExecution.name, 'time': (testExecution.time / 100).toFixed(2), 'status' : 'SUCCESS'}
             })
         }
         for(const i in deployReport.result.details.runTestResult.failures){
             const testExecution = deployReport.result.details.runTestResult.failures[i];
+            executionTime += Number(testExecution.time);
             testCases.push({
-                $: {'name': testExecution.methodName, 'classname': testExecution.name, 'time': testExecution.time, 'status' : 'FAIL'},
+                $: {'name': testExecution.methodName, 'classname': testExecution.name, 'time': (testExecution.time / 100).toFixed(2), 'status' : 'FAIL'},
                 failure: {
                     message: testExecution.message,
                     type: testExecution.type
@@ -49,15 +53,15 @@ export default class Report extends SfdxCommand {
             })
         }
 
-        let executionTime: number = new Date(deployReport.result.completedDate).getTime() - new Date(deployReport.result.startDate).getTime();
-        executionTime = executionTime / 1000;
+        // let executionTime: number = new Date(deployReport.result.completedDate).getTime() - new Date(deployReport.result.startDate).getTime();
+        executionTime = executionTime / 100;
 
         const builder = new xml2js.Builder();
 
         const xml = builder.buildObject({
             'testsuites': {
                 'testsuite':{
-                    $: {'name': this.flags.id, 'timestamp':deployReport.result.completedDate, 'tests': deployReport.result.numberTestsTotal, 'failures': deployReport.result.numberTestErrors, 'time': executionTime},
+                    $: {'name': this.flags.id, 'timestamp':deployReport.result.completedDate, 'tests': deployReport.result.numberTestsTotal, 'failures': deployReport.result.numberTestErrors, 'time': executionTime.toFixed(2)},
                     properties: {
                         property: [{
                             $: {'name': 'outcome', 'value': deployReport.result.status}
