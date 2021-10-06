@@ -49,7 +49,8 @@ export default class Report extends SfdxCommand {
             })
         }
 
-        const executionTime: number = new Date(deployReport.result.completedDate).getTime() - new Date(deployReport.result.startDate).getTime();
+        let executionTime: number = new Date(deployReport.result.completedDate).getTime() - new Date(deployReport.result.startDate).getTime();
+        executionTime = executionTime / 1000;
 
         const builder = new xml2js.Builder();
 
