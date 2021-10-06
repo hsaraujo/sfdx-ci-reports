@@ -35,13 +35,13 @@ export default class Report extends SfdxCommand {
         for(const i in deployReport.result.details.runTestResult.successes){
             const testExecution = deployReport.result.details.runTestResult.successes[i];
             testCases.push({
-                $: {'name': testExecution.methodName, 'classname': testExecution.name, 'time': (testExecution.time / 1000).toFixed(2), 'status' : 'SUCCESS'}
+                $: {'name': testExecution.methodName, 'classname': testExecution.name, 'time': testExecution.time, 'status' : 'SUCCESS'}
             })
         }
         for(const i in deployReport.result.details.runTestResult.failures){
             const testExecution = deployReport.result.details.runTestResult.failures[i];
             testCases.push({
-                $: {'name': testExecution.methodName, 'classname': testExecution.name, 'time': (testExecution.time / 1000).toFixed(2), 'status' : 'FAIL'},
+                $: {'name': testExecution.methodName, 'classname': testExecution.name, 'time': testExecution.time, 'status' : 'FAIL'},
                 failure: {
                     message: testExecution.message,
                     type: testExecution.type
