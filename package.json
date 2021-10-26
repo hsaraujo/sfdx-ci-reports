@@ -50,8 +50,11 @@
     "commands": "./lib/commands",
     "bin": "sfdx",
     "topics": {
-      "hello": {
-        "description": "Commands to say hello."
+      "report": {
+        "description": "Report"
+      },
+      "coverage": {
+        "description": "Coverage"
       }
     },
     "devPlugins": [
