@@ -1,9 +1,9 @@
 {
-  "name": "ci-reports",
-  "description": "reports for ci",
-  "version": "0.0.25",
+  "name": "sfdx-ci-reports",
+  "description": "Reports for Salesforce CI/CD",
+  "version": "0.0.1",
   "author": "Heitor Araujo",
-  "bugs": "https://github.com/hsaraujo/ci-reports/issues",
+  "bugs": "https://github.com/hsaraujo/sfdx-ci-reports/issues",
   "dependencies": {
     "@oclif/config": "1.17.0",
     "@oclif/errors": "1.3.5",
@@ -41,7 +41,7 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/hsaraujo/ci-reports",
+  "homepage": "https://github.com/hsaraujo/sfdx-ci-reports",
   "keywords": [
     "sfdx-plugin"
   ],
@@ -58,7 +58,7 @@
       "@oclif/plugin-help"
     ]
   },
-  "repository": "hsaraujo/ci-reports",
+  "repository": "hsaraujo/sfdx-ci-reports",
   "scripts": {
     "lint": "tslint --project . --config tslint.json --format stylish",
     "postpack": "rm -f oclif.manifest.json",
