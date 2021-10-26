@@ -20,12 +20,12 @@ export default class Report extends SfdxCommand {
 
     protected static flagsConfig = {
         // flag with a value (-n, --name=VALUE)
-        id: flags.string({char: 'i', description: messages.getMessage('nameFlagDescription')})
+        id: flags.string({char: 'i', description: messages.getMessage('nameFlagDescription')}),
+        outputfile: flags.string({char: 'f', required: true, description: messages.getMessage('outputFile')})
     };
 
     public async run(): Promise<any> {
 
-        this.exec(`mkdir -p test-reports`, {});
         // this.ux.log(this.flags.targetusername)
         const deployReportJson = this.exec(`sfdx force:source:deploy:report -i ${this.flags.id} -u ${this.flags.targetusername} --json`, {trim: true});
 
@@ -86,7 +86,7 @@ export default class Report extends SfdxCommand {
             }
         });
 
-        fs.writeFileSync(`test-reports/${this.flags.id}-junit.xml`, xml);
+        fs.writeFileSync(this.flags.outputfile, xml);
 
     }
 

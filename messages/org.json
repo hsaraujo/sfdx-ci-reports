@@ -3,5 +3,6 @@
   "nameFlagDescription": "name to print",
   "forceFlagDescription": "example boolean flag",
   "errorNoOrgResults": "No results found for the org '%s'.",
-  "resultsFlagDescription": "Result format (cobertura | jacoco)"
+  "resultsFlagDescription": "Result format (cobertura | jacoco)",
+  "outputFile": "Output file for the generated report"
 }

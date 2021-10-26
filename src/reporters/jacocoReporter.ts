@@ -2,10 +2,11 @@ import { DeployReport } from "../models/deploy/deployReport";
 import IReporter from "./ireporter";
 import * as xml2js from 'xml2js';
 import * as fs from 'fs';
+import { ReportOption } from "../models/deploy/reportOption";
 
 export default class JacocoReporter implements IReporter{
 
-    generate(deployReport: DeployReport): void {
+    generate(deployReport: DeployReport, options: ReportOption): void {
         
         let sourceFiles = [];
         let totalLinesCovered: number = 0;
@@ -63,7 +64,7 @@ export default class JacocoReporter implements IReporter{
             }
         });
 
-        fs.writeFileSync(`test-reports/coverage-jacoco.xml`, xml);
+        fs.writeFileSync(options.outputFile, xml);
         
     }
 

@@ -21,21 +21,22 @@ export default class Coverage extends SfdxCommand {
     protected static flagsConfig = {
         // flag with a value (-n, --name=VALUE)
         id: flags.string({char: 'i', required: true, description: messages.getMessage('nameFlagDescription')}),
-        result : flags.string({char: 'r', required: true, description: messages.getMessage('resultsFlagDescription')})
+        result : flags.string({char: 'r', required: true, description: messages.getMessage('resultsFlagDescription')}),
+        outputfile: flags.string({char: 'f', required: true, description: messages.getMessage('outputFile')})
     };
 
     public async run(): Promise<any> {
 
-        this.exec(`mkdir -p test-reports`, {});
+        // this.exec(`mkdir -p test-reports`, {});
         // this.ux.log(this.flags.targetusername)
         const deployReportJson = this.exec(`sfdx force:source:deploy:report -i ${this.flags.id} -u ${this.flags.targetusername} --json`, {trim: true});
 
         const deployReport: DeployReport = JSON.parse(deployReportJson)
 
         if(this.flags.result == 'cobertura')
-            new CoberturaReporter().generate(deployReport);
+            new CoberturaReporter().generate(deployReport, { outputFile : this.flags.outputfile });
         else if(this.flags.result == 'jacoco')
-            new JacocoReporter().generate(deployReport);
+            new JacocoReporter().generate(deployReport, { outputFile : this.flags.outputfile });
 
     }
 

@@ -22,7 +22,7 @@ $ npm install -g sfdx-ci-reports
 $ sfdx COMMAND
 running command...
 $ sfdx (-v|--version|version)
-sfdx-ci-reports/0.0.1 darwin-x64 node-v15.6.0
+sfdx-ci-reports/0.0.2 darwin-x64 node-v15.6.0
 $ sfdx --help [COMMAND]
 USAGE
   $ sfdx COMMAND
@@ -30,17 +30,20 @@ USAGE
 ```
 <!-- usagestop -->
 <!-- commands -->
-* [`sfdx sfci:coverage -i <string> -r <string> [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-sfcicoverage--i-string--r-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
-* [`sfdx sfci:report [-i <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-sfcireport--i-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
+* [`sfdx sfci:coverage -i <string> -r <string> -f <string> [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-sfcicoverage--i-string--r-string--f-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
+* [`sfdx sfci:report -f <string> [-i <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-sfcireport--f-string--i-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
 
-## `sfdx sfci:coverage -i <string> -r <string> [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
+## `sfdx sfci:coverage -i <string> -r <string> -f <string> [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
 ```
 USAGE
-  $ sfdx sfci:coverage -i <string> -r <string> [-u <string>] [--apiversion <string>] [--json] [--loglevel 
+  $ sfdx sfci:coverage -i <string> -r <string> -f <string> [-u <string>] [--apiversion <string>] [--json] [--loglevel 
   trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
 
 OPTIONS
+  -f, --outputfile=outputfile                                                       (required) Output file for the
+                                                                                    generated report
+
   -i, --id=id                                                                       (required) name to print
 
   -r, --result=result                                                               (required) Result format (cobertura
@@ -58,16 +61,19 @@ OPTIONS
                                                                                     this command invocation
 ```
 
-_See code: [src/commands/sfci/coverage.ts](https://github.com/hsaraujo/sfdx-ci-reports/blob/v0.0.1/src/commands/sfci/coverage.ts)_
+_See code: [src/commands/sfci/coverage.ts](https://github.com/hsaraujo/sfdx-ci-reports/blob/v0.0.2/src/commands/sfci/coverage.ts)_
 
-## `sfdx sfci:report [-i <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
+## `sfdx sfci:report -f <string> [-i <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
 ```
 USAGE
-  $ sfdx sfci:report [-i <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel 
+  $ sfdx sfci:report -f <string> [-i <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel 
   trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
 
 OPTIONS
+  -f, --outputfile=outputfile                                                       (required) Output file for the
+                                                                                    generated report
+
   -i, --id=id                                                                       name to print
 
   -u, --targetusername=targetusername                                               username or alias for the target
@@ -82,7 +88,7 @@ OPTIONS
                                                                                     this command invocation
 ```
 
-_See code: [src/commands/sfci/report.ts](https://github.com/hsaraujo/sfdx-ci-reports/blob/v0.0.1/src/commands/sfci/report.ts)_
+_See code: [src/commands/sfci/report.ts](https://github.com/hsaraujo/sfdx-ci-reports/blob/v0.0.2/src/commands/sfci/report.ts)_
 <!-- commandsstop -->
 <!-- debugging-your-plugin -->
 # Debugging your plugin

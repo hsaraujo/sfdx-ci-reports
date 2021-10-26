@@ -4,24 +4,22 @@ import * as xml2js from 'xml2js';
 import { BuilderOptions } from 'xml2js'
 import * as fs from 'fs';
 import CodeCoverage from "../models/deploy/codeCoverage";
+import { ReportOption } from "../models/deploy/reportOption";
 
 export default class CoberturaReporter implements IReporter{
 
-    generate(deployReport: DeployReport): void {
+    generate(deployReport: DeployReport, options: ReportOption): void {
 
-        const options: BuilderOptions = {
+        const builderOptions: BuilderOptions = {
             doctype: { 'sysID' : 'http://cobertura.sourceforge.net/xml/coverage-04.dtd'},
             xmldec: {'version': '1.0', 'encoding': 'UTF-8'}
         };
         
-        const builder = new xml2js.Builder(options);
+        const builder = new xml2js.Builder(builderOptions);
 
         const xml = builder.buildObject({
             'coverage': {
                 $ : this.coverageAttributes(deployReport),
-                'sources': {
-                    'source': '/home/vsts/work/1/s/test-reports'
-                },
                 'packages': {
                     'package': {
                         $ : this.packageAttributes(deployReport),
@@ -33,7 +31,7 @@ export default class CoberturaReporter implements IReporter{
             }
         });
 
-        fs.writeFileSync(`test-reports/coverage-cobertura.xml`, xml);
+        fs.writeFileSync(options.outputFile, xml);
         
     }
 
